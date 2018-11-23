@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "scripts": {
+    "lint": "tslint --fix *.ts",
+    "deploy": "clasp push"
+  },
+  "dependencies": {
+    "@google/clasp": "^1.6.3"
+  },
+  "devDependencies": {
+    "@types/google-apps-script": "0.0.32",
+    "tslint": "^5.11.0",
+    "typescript": "^3.1.6",
+    "typescript-formatter": "^7.2.2"
+  }
+}

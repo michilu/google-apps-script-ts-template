@@ -1,0 +1,37 @@
+box: node:alpine
+build:
+  steps:
+  - script:
+      name: set -x
+      code: set -x
+  - npm-install
+  - script:
+      name: test
+      code: #npm test
+lint:
+  steps:
+  - script:
+      name: set -x
+      code: set -x
+  - npm-install
+  - script:
+      name: lint
+      code: npm run lint
+deploy:
+  steps:
+  - script:
+      name: export to .clasprc.json .clasp.json
+      code: |
+        echo $CLASPRC_JSON > .clasprc.json
+        echo $CLASP_JSON > .clasp.json
+  - script:
+      name: set -x
+      code: set -x
+  - npm-install:
+      options: --production
+  - script:
+      name: login
+      code: npx clasp login --creds .clasprc.json || echo "to already be logged in?"
+  - script:
+      name: deploy
+      code: npm run deploy

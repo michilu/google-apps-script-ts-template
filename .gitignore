@@ -1,1 +1,7 @@
-script.js
+.clasp.json
+.clasprc.json
+/node_modules
+
+syntax: glob
+
+*.js
