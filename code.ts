@@ -3,7 +3,7 @@
 let debug = true;
 
 class JSONPHelper {
-    public static response(error, result, prefix) {
+    public static response(error, result, prefix?) {
         const ret = [];
         if (prefix) {
             ret.push(prefix);
@@ -50,7 +50,7 @@ class MyClass {
         } else {
             // Fallback, if this is not a published WebApp or automatic uninstall is wanted
             // remove all triggers, so there are no errors when we invalidate the authentification
-            for (const trigger of Array.from(ScriptApp.getScriptTriggers())) {
+            for (const trigger of ScriptApp.getScriptTriggers()) {
                 ScriptApp.deleteTrigger(trigger);
             }
 
@@ -89,8 +89,8 @@ let doGet = function(request) {
             return m.uninstall(request.parameter.automatic === "true");
         case "count":
             let current = Number(UserProperties.getProperty("count")) || 0;
-            UserProperties.setProperty("count", ++current);
-            return ContentService.createTextOutput(current);
+            UserProperties.setProperty("count", String(++current));
+            return ContentService.createTextOutput(String(current));
         case "dump":
             return JSONPHelper.response(null, { properties: UserProperties.getProperties() });
         default:
@@ -100,7 +100,7 @@ let doGet = function(request) {
             ret.append("<ul>");
             ret.append(`<li><a href='${url}?action=jsonp'>Check out JSON</a></li>`);
             ret.append(`<li><a href='${url}?action=jsonp&callback=alert'>Check out JSONP</a></li>`);
-            ret.append(`<li><a href='${url}?action=bump'>Bump count</a></li>`);
+            ret.append(`<li><a href='${url}?action=count'>Bump count</a></li>`);
             ret.append(`<li><a href='${url}?action=dump'>Get all user properties</a></li>`);
             ret.append(`<li><a href='${url}?action=uninstall&automatic=true'>Or uninstall the service</a></li>`);
             ret.append("</ul>");
