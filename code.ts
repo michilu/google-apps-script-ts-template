@@ -28,11 +28,30 @@ class MyClass {
         }
 
         // Uncomment this if your script needs to publish itself as a service.
-        // Logger.log 'Enabling as a WebApp...' if debug
-        // @enable()
+        // if (debug) {
+        //     Logger.log("Enabling as a WebApp...");
+        // }
+        // this.enable();
 
         // Your other initializations here - for example setting triggers, etc.
     }
+
+    // Uncomment this if your script needs to publish itself as a service.
+    // You don't need this if yourself published this script as a service from within the Google Apps Script edtior.
+    //
+    // public static enable() {
+    //     const svc = ScriptApp.getService();
+    //     if (!svc.isEnabled()) {
+    //         svc.enable(svc.Restriction.MYSELF);
+    //         if (debug) {
+    //             Logger.log(`The app is now available under '${svc.getUrl()}'`);
+    //         }
+    //     }
+    // }
+    //
+    // public static disable() {
+    //     ScriptApp.getService().disable();
+    // }
 
     constructor() { }
 
@@ -60,20 +79,6 @@ class MyClass {
         }
     }
 }
-
-// Uncomment this if your script needs to publish itself as a service.
-// You don't need this if yourself published this script as a service from within the Google Apps Script edtior.
-//
-// @enable: ->
-// 	svc = ScriptApp.getService()
-// 	unless svc.isEnabled()
-// 		svc.enable svc.Restriction.MYSELF
-// 		Logger.log "The app is now available under '#{svc.getUrl()}'" if debug
-// 	return
-//
-// @disable: ->
-// 	ScriptApp.getService().disable()
-// 	return
 
 // WebApp-specific events:
 
