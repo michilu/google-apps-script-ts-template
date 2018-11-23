@@ -8,6 +8,11 @@ build:
   - script:
       name: test
       code: #npm test
+  after-steps:
+  - ytet5uy4/apk-add: # https://app.wercker.com/steps/ytet5uy4/apk-add
+      packages: curl
+  - shoya/slack-notifier: # https://app.wercker.com/steps/shoya/slack-notifier
+      url: $SLACK_URL
 lint:
   steps:
   - script:
@@ -17,6 +22,11 @@ lint:
   - script:
       name: lint
       code: npm run lint
+  after-steps:
+  - ytet5uy4/apk-add: # https://app.wercker.com/steps/ytet5uy4/apk-add
+      packages: curl
+  - shoya/slack-notifier: # https://app.wercker.com/steps/shoya/slack-notifier
+      url: $SLACK_URL
 deploy:
   steps:
   - script:
@@ -35,3 +45,8 @@ deploy:
   - script:
       name: deploy
       code: npm run deploy
+  after-steps:
+  - ytet5uy4/apk-add: # https://app.wercker.com/steps/ytet5uy4/apk-add
+      packages: curl
+  - shoya/slack-notifier: # https://app.wercker.com/steps/shoya/slack-notifier
+      url: $SLACK_URL
