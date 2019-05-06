@@ -6,6 +6,7 @@ A TypeScript template for Google Apps Script development, forked https://github.
 
 ```console
 npm install
+npx clasp login
 npx clasp create
 npx clasp push
 ```
